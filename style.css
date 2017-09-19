@@ -13,17 +13,36 @@
   margin-left: 15px;
 }
 
-.formatonota{
+.formatonota {
   border: 1px solid black;
   border-radius: 5px;
   display: inline-block;
   margin: 1% 4.15%;
   font-size: 18px;
   background-color: #ffccff;
-  padding: 5px 10px;
+  padding: 5px 10px 0px 5px;
+  height: 90px;
+  position: relative;
 
 }
+.titulo-nota{
+  text-align: center;
+  overflow-y: auto;
+  height: 55px;
+}
 
+.ver-nota{
+  font-size: 15px;
+  position: absolute;
+  bottom: 0;
+  background-color: #ffccff;
+}
+
+#nueva-nota{
+  border: 1px solid blue;
+  border-radius: 2px;
+  padding: 1px;
+}
 div>h3{
   text-align: center;
 }
