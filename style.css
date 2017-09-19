@@ -37,6 +37,11 @@
   bottom: 0;
   background-color: #ffccff;
 }
+.borde-div-notas{
+  border: 1px solid pink;
+  /*margin: 0.05%;*/
+
+}
 
 #nueva-nota{
   border: 1px solid blue;
