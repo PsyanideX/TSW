@@ -58,82 +58,40 @@ div>h3{
 /*---------------------------- fin pagina principal------------------------*/
 /*------------- Login ------------------------------------------ */
 #login {
-    padding-top: 50px
+  padding-top: 10%;
+
 }
-#login .form-wrap {
-    width: 30%;
-    margin: 0 auto;
+#body-login{
+  background-image: url("notebook.jpg");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: auto;
 }
 #login h1 {
-    color: #1fa67b;
-    font-size: 18px;
-    text-align: center;
-    font-weight: bold;
-    padding-bottom: 20px;
+  color: #0B610B;
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 20px;
 }
 #login .form-group {
-    margin-bottom: 25px;
-}
-#login .checkbox {
-    margin-bottom: 20px;
-    position: relative;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-}
-#login .checkbox.show:before {
-    content: '\e013';
-    color: #1fa67b;
-    font-size: 17px;
-    margin: 1px 0 0 3px;
-    position: absolute;
-    pointer-events: none;
-    font-family: 'Glyphicons Halflings';
-}
-#login .checkbox .character-checkbox {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-    vertical-align: middle;
-    display: inline-block;
-}
-#login .checkbox .label {
-    color: #6d6d6d;
-    font-size: 13px;
-    font-weight: normal;
-}
-#login .btn.btn-custom {
-    font-size: 14px;
-	margin-bottom: 20px;
-}
-#login .forget {
-    font-size: 13px;
-	text-align: center;
-	display: block;
+  width: 35%;
+  margin: auto;
+  margin-bottom: 25px;
+  padding-left: 5%;
 }
 
-/*    --------------------------------------------------
-	:: Inputs & Buttons
-	-------------------------------------------------- */
+/*
 .form-control {
-    color: #212121;
+  color: #212121;
 }
 .btn-custom {
-    color: #fff;
+  color: #fff;
 	background-color: #1fa67b;
 }
-.btn-custom:hover,
-.btn-custom:focus {
-    color: #fff;
-}
 
-/*    --------------------------------------------------
-    :: Footer
-	-------------------------------------------------- */
 #footer {
     color: #6d6d6d;
     font-size: 12px;
@@ -144,4 +102,4 @@ div>h3{
 }
 #footer a {
     color: inherit;
-}
+}*/
