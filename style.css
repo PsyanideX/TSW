@@ -68,6 +68,8 @@ div>h3{
   background-repeat: no-repeat;
   max-width: 100%;
   height: auto;
+  background-color: #A4A4A4;
+
 }
 #login h1 {
   color: #0B610B;
@@ -80,26 +82,10 @@ div>h3{
   width: 35%;
   margin: auto;
   margin-bottom: 25px;
-  padding-left: 5%;
+  padding-left: 3%;
 }
 
-/*
-.form-control {
-  color: #212121;
+.btn-login{
+  background-color: #0B610B;
+  color: white;
 }
-.btn-custom {
-  color: #fff;
-	background-color: #1fa67b;
-}
-
-#footer {
-    color: #6d6d6d;
-    font-size: 12px;
-    text-align: center;
-}
-#footer p {
-    margin-bottom: 0;
-}
-#footer a {
-    color: inherit;
-}*/
