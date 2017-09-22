@@ -4,11 +4,11 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="style.css"></link>
+    <link rel="stylesheet" href="style2.css"></link>
     <meta charset="utf-8"></meta>
     <title>Apunta</title>
   </head>
-  <body>
+  <body id=fondo>
     <nav class="navbar navbar-inverse" id="navfontcolor">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -20,5 +20,25 @@
         </ul>
       </div>
     </nav>
+
+    <div class=col-xs-12 id=nueva-nota >
+      <h1>Nueva nota</h1>
+      <div>
+        <!--<p>Título:</p>-->
+        <textarea name="titulo" rows="1" cols="40" placeholder="Título"></textarea>
+      </div>
+      <div>
+        <!--<p>Descripción:</p>-->
+        <!--<input id="descriptionBoxId" type="text" name="descripcion" placeholder="Descripción" >-->
+        <textarea name="descripcion" rows="10" cols="40" placeholder="Descripción"></textarea>
+      </div>
+      <div>
+        <button type="button" class="btn btn-success">Editar</button>
+        <button type="button" class="btn btn-warning">Compartir</button>
+        <button type="button" class="btn btn-danger">Eliminar</button>
+      </div>
+
+
+
   </body>
   </html>
