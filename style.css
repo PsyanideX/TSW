@@ -61,6 +61,9 @@ div>h3{
   padding-top: 10%;
 
 }
+html, body{
+  height: 100%;
+}
 #body-login{
   background-image: url("notebook.jpg");
   background-size: cover;
@@ -68,15 +71,16 @@ div>h3{
   background-repeat: no-repeat;
   max-width: 100%;
   height: auto;
-  background-color: #A4A4A4;
-
 }
+
+
 #login h1 {
   color: #0B610B;
   font-size: 30px;
   text-align: center;
   font-weight: bold;
   padding-bottom: 20px;
+  padding-left: 3%;
 }
 #login .form-group {
   width: 35%;
@@ -88,4 +92,77 @@ div>h3{
 .btn-login{
   background-color: #0B610B;
   color: white;
+}
+
+/*@media screen and (max-width:990px) {
+  #login h1 {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width:715px) {
+  #login h1 {
+    font-size: 18px;
+  }
+
+  #login .form-group {
+      margin-bottom: 15px;
+      width: 30%;
+  }
+
+  .btn-login{
+    height: 30px;
+    font-size: 13px;
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width:580px) {
+  #login h1 {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width:520px) {
+  #login h1 {
+    padding-bottom: 3px;
+  }
+}
+
+@media screen and (max-width:490px) {
+  #login h1 {
+    font-size: 12px;
+  }
+
+  .btn-login{
+    height: 20px;
+    font-size: 10px;
+    padding: 3px;
+  }
+
+  #login .form-group {
+      margin-bottom: 10px;
+  }
+}*/
+
+@media screen and (max-width:400px) {
+  #login h1 {
+    font-size: 22px;
+  }
+
+  #login .form-group {
+      margin-bottom: 15px;
+      width: 60%;
+  }
+
+  .btn-login{
+    height: 30px;
+    font-size: 13px;
+    padding: 5px;
+  }
+  #body-login{
+    background-image: none;
+    background: linear-gradient(grey, white);
+    background-repeat: no-repeat;
+  }
 }
