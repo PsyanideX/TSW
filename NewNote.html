@@ -8,7 +8,7 @@
     <meta charset="utf-8"></meta>
     <title>Apunta</title>
   </head>
-  <body id=fondo>
+  <body>
     <nav class="navbar navbar-inverse" id="navfontcolor">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -20,25 +20,20 @@
         </ul>
       </div>
     </nav>
-
-    <div class=col-xs-12 id=nueva-nota >
-      <h1>Nueva nota</h1>
-      <div>
-        <!--<p>Título:</p>-->
-        <textarea name="titulo" rows="1" cols="40" placeholder="Título"></textarea>
+    <div id=fondo>
+      <div class=col-xs-12 id=nueva-nota>
+        <h1 class="colorCabecera">Nueva nota</h1>
+        <div>
+          <textarea name="titulo" rows="1" cols="40" placeholder="Título"></textarea>
+        </div>
+        <div>
+          <textarea name="descripcion" rows="10" cols="40" placeholder="Descripción"></textarea>
+        </div>
+        <div>
+          <button type="button" class="btn btn-success">Crear</button>
+        </div>
       </div>
-      <div>
-        <!--<p>Descripción:</p>-->
-        <!--<input id="descriptionBoxId" type="text" name="descripcion" placeholder="Descripción" >-->
-        <textarea name="descripcion" rows="10" cols="40" placeholder="Descripción"></textarea>
-      </div>
-      <div>
-        <button type="button" class="btn btn-success">Editar</button>
-        <button type="button" class="btn btn-warning">Compartir</button>
-        <button type="button" class="btn btn-danger">Eliminar</button>
-      </div>
-
-
+    </div>
 
   </body>
   </html>
