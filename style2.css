@@ -1,0 +1,31 @@
+
+
+/*Esto no hay que añadirlo*/
+
+.navbar {
+  border-radius: 0px;
+  background:#006666;
+  border: none;
+
+}
+
+#navfontcolor p, #navfontcolor a{
+  color: white;
+}
+
+/* A partir de aqui si */
+#nueva-nota
+{
+  margin-top: 80px;
+  margin-left:20px; 
+  text-align: center;
+}
+#fondo
+{
+  background-image: url("notebook.jpg");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: auto;
+}
