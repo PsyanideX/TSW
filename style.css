@@ -5,7 +5,10 @@
   background:#006666;
   border: none;
 }
-
+#body-index{
+  /*background: linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 50%, rgba(209,209,209,1) 51%, rgba(254,254,254,1) 100%);*/
+background: linear-gradient(to right, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 30%, rgba(181,198,208,1) 51%, rgba(224,239,249,1) 100%);
+}
 #navfontcolor p, #navfontcolor a{
   color: white;
 }
