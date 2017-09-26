@@ -8,7 +8,10 @@
 #body-index{
 
 /*background: linear-gradient(to right, rgba(242,246,248,1) 0%, rgba(216,225,231,1) 30%, rgba(181,198,208,1) 51%, rgba(224,239,249,1) 100%);*/
-background-image: url("postit.png");
+background-image: url("postit_transp.png");
+background-position: top center;
+background-repeat: no-repeat;
+
 }
 #navfontcolor p, #navfontcolor a{
   color: white;
@@ -68,7 +71,7 @@ html, body{
   height: 100%;
 }
 #body-login{
-  background-image: url("notebook.jpg");
+  background-image: url("postit_transp.png");
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
