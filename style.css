@@ -82,27 +82,35 @@ html, body{
 
 #login h1 {
   color: #0B610B;
-  font-size: 30px;
+  font-size: 50px;
   text-align: center;
   font-weight: bold;
   padding-bottom: 20px;
-  padding-left: 3%;
+  /*padding-left: 3%;*/
 }
 #login .form-group {
   width: 35%;
   margin: auto;
   margin-bottom: 25px;
-  padding-left: 3%;
+/*  padding-left: 3%;*/
 }
 
 .btn-login{
   background-color: #0B610B;
   color: white;
 }
+@media screen and (max-width:1000px) {
+  #login h1 {
+    font-size: 40px;
+    padding-top: 20px;
+  }
+  #login .form-group {
+      width: 40%;
+  }
 
 @media screen and (max-width:685px) {
   #login h1 {
-    font-size: 22px;
+    font-size: 40px;
     padding-top: 20px;
   }
   #login .form-group {
@@ -129,19 +137,18 @@ html, body{
     font-size: 22px;
   }
 
-  #login .form-group {
-      margin-bottom: 15px;
-      width: 60%;
-  }
-
   .btn-login{
     height: 30px;
     font-size: 13px;
     padding: 5px;
   }
   #body-login{
-    background-image: none;
-    background: linear-gradient(white, #A4A4A4);
+    background-image: url("post amarillo.png");
     background-repeat: no-repeat;
   }
+  #login .form-group {
+      width: 90%;
+  }
+
+
 }
