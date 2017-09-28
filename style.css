@@ -1,20 +1,32 @@
 /*PAGINA PRINCIPAL*/
+body {
+  font-family: 'Permanent Marker';
+}
 
 .navbar {
   border-radius: 0px;
   /*background:#006666;*/
-  background: #000000;
+  /*background: #000000;*/
+  background: #084D48;
   border: none;
 }
+
 #body-index{
-
-background-image: url("postit_transp.png");
-background-position: top center;
-background-repeat: no-repeat;
-
+  background-image: url("postit_transp.png");
+  background-position: top center;
+  background-repeat: no-repeat;
 }
+
 #navfontcolor p, #navfontcolor a{
   color: white;
+}
+
+.navbar-brand{
+  font-size: 25px;
+}
+
+.navbar-right{
+  font-size: 18px;
 }
 
 .glyphicon-user{
@@ -22,7 +34,7 @@ background-repeat: no-repeat;
 }
 
 .formatonota {
-  border: 1px solid black;
+  border: 1px solid #ffccff;
   border-radius: 5px;
   display: inline-block;
   margin: 1% 4.15%;
@@ -32,12 +44,16 @@ background-repeat: no-repeat;
   height: 90px;
   position: relative;
 
+
 }
 .titulo-nota{
   text-align: center;
   overflow-y: auto;
   overflow-x: hidden;
   height: 55px;
+  font-family: 'Patrick Hand';
+  font-size: 20px;
+  font-style: italic;
 }
 
 .ver-nota{
@@ -46,20 +62,24 @@ background-repeat: no-repeat;
   bottom: 0;
   background-color: #ffccff;
 }
+
 .borde-div-notas{
   border: 1px solid pink;
   margin: 0% 4.15%;
   padding-bottom: 2%;
-
 }
 
 #nueva-nota{
   border: 1px solid blue;
   border-radius: 2px;
   padding: 1px;
+  font-size: 8px;
 }
+
 div>h3{
   text-align: center;
+  font-size: 30px;
+  color: #084D48;
 }
 
 @media screen and (max-width:991px) {
@@ -95,10 +115,10 @@ html, body{
 
 
 #login h1 {
-  color: #0B610B; /*verde*/
+/*  color: #0B610B; /*verde*/
 /*  color: #dd1c5c;*/ /*rosa*/
 /*  color: #2299cc;*/ /*azul*/
-  color: #616161;
+  color: #084D48;
   font-size: 50px;
   text-align: center;
   font-weight: bold;
@@ -113,7 +133,7 @@ html, body{
 }
 
 .btn-login{
-  background-color: #0B610B;
+  background-color: #084D48;
 /*  background-color: #dd1c5c;
  background-color: #2299cc;*/
  /*background-color: #616161;*/
