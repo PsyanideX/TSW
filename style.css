@@ -1,6 +1,7 @@
 /*PAGINA PRINCIPAL*/
 body {
   font-family: 'Permanent Marker';
+  overflow: hidden;
 }
 
 .navbar {
@@ -9,7 +10,7 @@ body {
   border: none;
 }
 
-#body-index{
+.body-index{
   background-image: url("postit_transp.png");
   background-position: top center;
   background-repeat: no-repeat;
@@ -32,12 +33,12 @@ body {
 }
 
 .formatonota {
-  border: 1px solid #ffccff;
+  border: 1px solid #E8E5C0;
   border-radius: 5px;
   display: inline-block;
   margin: 1% 4.15%;
   font-size: 18px;
-  background-color: #ffccff;
+  background-color: rgba(253, 252, 236, 0.9);
   padding: 5px 10px 0px 5px;
   height: 90px;
   position: relative;
@@ -57,11 +58,11 @@ body {
   font-size: 15px;
   position: absolute;
   bottom: 0;
-  background-color: #ffccff;
+  background-color: rgba(253, 252, 236, 0.9);
 }
 
 .borde-div-notas{
-  border: 1px solid pink;
+  border: 1px hidden;
   margin: 0% 4.15%;
   padding-bottom: 2%;
 }
@@ -75,13 +76,13 @@ body {
 
 div>h3{
   text-align: center;
-  font-size: 30px;
+  font-size: 28px;
   color: #084D48;
 }
 
 @media screen and (max-width:991px) {
 
-  #body-index{
+  .body-index{
     background-image: url("postit-group 1920.png");
     background-position: top center;
     background-repeat: no-repeat;
@@ -121,6 +122,12 @@ html, body{
   width: 35%;
   margin: auto;
   margin-bottom: 25px;
+}
+
+#login .form-control{
+  font-size: 22px;
+  font-family: 'Patrick Hand';
+  font-style: italic;
 }
 
 .btn-login{
@@ -174,6 +181,10 @@ html, body{
     padding: 5px;
   }
 
+  #crear-nota{
+    padding-left:10px;
+  }
+
   #body-login{
     background-image: url("postit-group-transp.png");
     background-repeat: no-repeat;
@@ -201,4 +212,69 @@ html, body{
   outline: 1px solid #7D7D7D;
   border-radius: 10px;
 }
-/***********************************************************************************/
+/******************************new note*****************************************/
+
+#crear-nota {
+  padding-left:50px;
+  text-align: center;
+  margin-top: 5%;
+}
+
+#fondo {
+  background-image: url("postit_transp.png");
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  height: 100%;
+}
+
+.colorCabecera
+{
+  color:#084D48;
+}
+
+.btn{
+  background: #084D48;
+  font-size: 15px;
+}
+
+.boton-nota{
+  width: 100px;
+}
+
+#areatitulo {
+  width: 50%;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-family: 'Patrick Hand';
+  font-size: 20px;
+  font-style: italic;
+}
+
+#areatexto {
+  width: 50%;
+  height: 50vh;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-family: 'Patrick Hand';
+  font-size: 20px;
+  font-style: italic;
+}
+
+/***********************************************ver nota*****************************/
+
+#contenedornotaint{
+  border: 1px solid #E8E5C0;
+  border-radius: 5px;
+  font-size: 18px;
+  background-color: rgba(253, 252, 236, 0.9);
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#contenedornotaext{
+  text-align: center;
+  margin-top: 2%;
+}

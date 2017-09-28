@@ -27,7 +27,7 @@ body{
 }
 #fondo
 {
-  background-image: url("notebook.jpg");
+  background-image: url("postit_transp.png");
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
