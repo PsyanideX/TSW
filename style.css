@@ -93,7 +93,7 @@ div>h3{
 }
 /*---------------------------- fin pagina principal------------------------*/
 /*------------- Login ------------------------------------------ */
-#login {
+.login-reg {
   padding-top: 10%;
 }
 
@@ -101,7 +101,7 @@ html, body{
   height: 100%;
 }
 
-#body-login{
+.body-login-reg{
   background-image: url("postit_transp.png");
   background-size: cover;
   background-position: top center;
@@ -110,7 +110,7 @@ html, body{
   height: auto;
 }
 
-#login h1 {
+.login-reg h1 {
   color: #084D48;
   font-size: 50px;
   text-align: center;
@@ -118,13 +118,13 @@ html, body{
   padding-bottom: 20px;
 }
 
-#login .form-group {
+.login-reg .form-group {
   width: 35%;
   margin: auto;
   margin-bottom: 25px;
 }
 
-#login .form-control{
+.login-reg .form-control{
   font-size: 22px;
   font-family: 'Patrick Hand';
   font-style: italic;
@@ -217,12 +217,12 @@ html, body{
 
 
 @media screen and (max-width:1000px) {
-  #login h1 {
+  .login-reg h1 {
     font-size: 40px;
     padding-top: 20px;
   }
 
-  #login .form-group {
+  .login-reg .form-group {
       width: 40%;
   }
 
@@ -232,11 +232,11 @@ html, body{
 }
 
 @media screen and (max-width:685px) {
-  #login h1 {
+  .login-reg h1 {
     font-size: 40px;
     padding-top: 20px;
   }
-  #login .form-group {
+  .login-reg .form-group {
       width: 40%;
   }
 
@@ -245,11 +245,11 @@ html, body{
   }
 }
 @media screen and (max-width:570px) {
-  #login h1 {
+  .login-reg h1 {
     padding-top: 35px;
   }
 
-  #login .form-group {
+  .login-reg .form-group {
       width: 50%;
   }
 
@@ -264,7 +264,7 @@ html, body{
 }
 
 @media screen and (max-width:400px) {
-  #login h1 {
+  .login-reg h1 {
     font-size: 22px;
     padding-top: 55px;
   }
@@ -288,7 +288,7 @@ html, body{
     height: auto;
   }
 
-  #login .form-group {
+  .login-reg .form-group {
       width: 90%;
   }
 
