@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link href='https://fonts.googleapis.com/css?family=Permanent Marker' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Patrick Hand' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css"></link>
+    <link rel="stylesheet" href="../../css/style.css"></link>
     <meta charset="utf-8"></meta>
     <title>Apunta</title>
   </head>
@@ -19,10 +19,10 @@
 
             <h3>Regístrate aquí</h3>
 
-            <form  action="" method="">
+            <form  action="register" method="post">
 
               <div class="form-group">
-                <input type="text" name="nombre"  class="form-control" placeholder="Nombre y apellidos">
+                <input type="text" name="name"  class="form-control" placeholder="Nombre y apellidos">
               </div>
 
               <div class="form-group">
@@ -30,7 +30,7 @@
               </div>
 
               <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="Contraseña">
+                <input type="password" name="passwd" class="form-control" placeholder="Contraseña">
               </div>
 
               <div class="form-group">
