@@ -1,8 +1,8 @@
 <?php
 // file: index.php
 
-define("DEFAULT_CONTROLLER", "notes");
-define("DEFAULT_ACTION", "index");
+define("DEFAULT_CONTROLLER", "users");
+define("DEFAULT_ACTION", "login");
 /**
 * Parameters:
 * <ul>

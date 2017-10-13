@@ -94,11 +94,15 @@ class UsersController extends BaseController {
       $user->setName($_POST["name"]);
 			$user->setPasswd($_POST["passwd"]);
 			try{
+
 				$user->checkIsValidForRegister(); // if it fails, ValidationException
 				// check if user exists in the database
+
 				if (!$this->userMapper->aliasExists($_POST["alias"])){
 					// save the User object into the database
+
 					$this->userMapper->save($user);
+
 					// POST-REDIRECT-GET
 					// Everything OK, we will redirect the user to the list of posts
 					// We want to see a message after redirection, so we establish

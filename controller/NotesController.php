@@ -72,7 +72,7 @@ class NotesController extends BaseController {
 			}
 		}
 		// Put the Post object visible to the view
-		$this->view->setVariable("note", $note;
+		$this->view->setVariable("note", $note);
 		// render the view (/view/notes/new_note.php)
 		$this->view->render("notes", "new_note");
 	}

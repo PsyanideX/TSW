@@ -11,17 +11,6 @@
     <title>Apunta</title>
   </head>
   <body class="body-index">
-    <nav class="navbar navbar-inverse" id="navfontcolor">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="index.html">APUNTA</a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li><p class="navbar-text"><span class="glyphicon glyphicon-user"></span> Usuario</p></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Cerrar sesión</a></li>
-        </ul>
-      </div>
-    </nav>
     <div>
       <div class="col-xs-12" id="crear-nota">
         <h1 class="colorCabecera">Nueva nota</h1>
@@ -35,7 +24,7 @@
         <div>
           <!--<a class="btn btn-success boton-nota">Crear</a>-->
           <input type="submit" class="btn btn-success boton-nota" value="Crear">
-          <a href="index.html" class="btn btn-success boton-nota">Cancelar </a>
+          <a href="index.php" class="btn btn-success boton-nota">Cancel </a>
         </div>
       </div>
     </div>

@@ -11,17 +11,6 @@
     <title>Apunta</title>
   </head>
   <body class="body-index">
-    <nav class="navbar navbar-inverse" id="navfontcolor">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="index.html">APUNTA</a>
-        </div>
-        <ul class="nav navbar-nav navbar-right">
-          <li><p class="navbar-text"><span class="glyphicon glyphicon-user"></span> Usuario</p></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Cerrar sesión</a></li>
-        </ul>
-      </div>
-    </nav>
     <div>
       <div class="col-xs-12 center-block" id="contenedornotaext">
         <h1 class="colorCabecera">Lista de la compra</h1>

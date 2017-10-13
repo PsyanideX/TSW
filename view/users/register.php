@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+
+<?php
+//file: view/users/register.php
+require_once(__DIR__."/../../core/ViewManager.php");
+$view = ViewManager::getInstance();
+$errors = $view->getVariable("errors");
+var_dump($errors);
+$user = $view->getVariable("user");
+
+$view->setVariable("title", "Register");
+?>
+
 <html>
   <head>
 
@@ -19,7 +31,7 @@
 
             <h3>Regístrate aquí</h3>
 
-            <form  action="register" method="post">
+            <form  action="index.php?controller=users&amp;action=register" method="post">
 
               <div class="form-group">
                 <input type="text" name="name"  class="form-control" placeholder="Nombre y apellidos">
