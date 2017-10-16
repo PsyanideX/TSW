@@ -18,8 +18,7 @@ class NotesController extends BaseController {
 		// obtain the data from the database
 		$this->showMyNotes();
 		$this->showSharedNotes();
-
-		// render the view (/view/posts/index.php)
+		// render the view (/view/notes/index.php)
 		$this->view->render("notes", "index");
 	}
 
@@ -42,36 +41,26 @@ class NotesController extends BaseController {
 		if (!isset($this->currentUser)) {
 			throw new Exception(i18n("Not in session. Adding posts requires login"));
 		}
-		$nota = new Note();
-		if (isset($_POST["submit"])) { // reaching via HTTP Post...
-			// populate the Post object with data form the form
+		$note = new Note();
+
+		if (isset($_POST["submit"])) {
+
 			$note->setTitle($_POST["title"]);
 			$note->setContent($_POST["content"]);
-			// The user of the Post is the currentUser (user in session)
 			$note->setUser($this->currentUser);
 			try {
-				// validate Post object
+
 				$note->checkIsValidForCreate(); // if it fails, ValidationException
-				// save the Post object into the database
 				$this->noteMapper->save($note);
-				// POST-REDIRECT-GET
-				// Everything OK, we will redirect the user to the list of posts
-				// We want to see a message after redirection, so we establish
-				// a "flash" message (which is simply a Session variable) to be
-				// get in the view after redirection.
 				$this->view->setFlash(sprintf(i18n("Note \"%s\" successfully added."),$note ->getTitle()));
-				// perform the redirection. More or less:
 				// header("Location: index.php?controller=notess&action=index")
-				// die();
 				$this->view->redirect("notes", "index");
 			}catch(ValidationException $ex) {
-				// Get the errors array inside the exepction...
 				$errors = $ex->getErrors();
-				// And put it to the view as "errors" variable
 				$this->view->setVariable("errors", $errors);
 			}
 		}
-		// Put the Post object visible to the view
+
 		$this->view->setVariable("note", $note);
 		// render the view (/view/notes/new_note.php)
 		$this->view->render("notes", "new_note");

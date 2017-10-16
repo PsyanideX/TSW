@@ -65,16 +65,13 @@ class NoteMapper {
 			$stmt = $this->db->prepare("SELECT notes.id_note, notes.title, notes.content, notes.alias FROM notes, shared_notes WHERE notes.id_note =shared_notes.id_note AND shared_notes.alias = ?");
 			$stmt->execute(array($currentuser));
 			$notes_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			//if($notes_db != NULL){
-				$notes = array();
-				foreach ($notes_db as $note) {
+			$notes = array();
+			foreach ($notes_db as $note) {
 					$alias = new User($note["alias"]);
 					array_push($notes, new Note($note["id_note"], $note["title"], $note["content"], $alias));
-				}
-				return $notes;
-			/*}else{
-				return NULL;
-			}*/
+			}
+			return $notes;
+
 
 		}
 	}
