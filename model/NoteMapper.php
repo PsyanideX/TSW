@@ -11,8 +11,9 @@ class NoteMapper {
 		$this->db = PDOConnection::getInstance();
 	}
 
-	public function findAll() {
-		$stmt = $this->db->query("SELECT * FROM notes, users WHERE users.alias = notes.alias");
+	public function findAll($currentuser) {
+		$stmt = $this->db->prepare("SELECT * FROM notes WHERE alias =?");
+		$stmt->execute(array($currentuser));
 		$notes_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		$notes = array();
 		foreach ($notes_db as $note) {
@@ -59,5 +60,22 @@ class NoteMapper {
       $stmt = $this->db->prepare("DELETE from shared_notes WHERE id_note=? AND alias=?");
 			$stmt->execute(array($note->getIdNote(),$user->getAlias()));
     }
+
+		public function findAllShared($currentuser) {
+			$stmt = $this->db->prepare("SELECT notes.id_note, notes.title, notes.content, notes.alias FROM notes, shared_notes WHERE notes.id_note =shared_notes.id_note AND shared_notes.alias = ?");
+			$stmt->execute(array($currentuser));
+			$notes_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			//if($notes_db != NULL){
+				$notes = array();
+				foreach ($notes_db as $note) {
+					$alias = new User($note["alias"]);
+					array_push($notes, new Note($note["id_note"], $note["title"], $note["content"], $alias));
+				}
+				return $notes;
+			/*}else{
+				return NULL;
+			}*/
+
+		}
 	}
 ?>

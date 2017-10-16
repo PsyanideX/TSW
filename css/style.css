@@ -1,8 +1,11 @@
 /*PAGINA PRINCIPAL*/
-body {
+body, header {
   font-family: 'Permanent Marker';
   overflow: auto;
 }
+/*header{
+  font-family: 'Permanent Marker';
+}*/
 
 .navbar {
   border-radius: 0px;
@@ -108,6 +111,7 @@ html, body{
   background-repeat: no-repeat;
   max-width: 100%;
   height: auto;
+  font-family: 'Permanent Marker';
 }
 
 .login-reg h1 {
@@ -279,14 +283,14 @@ html, body{
     padding-left:10px;
   }
 
-  #body-login{
+/*  #body-login{
     background-image: url("postit-group-transp.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
     max-width: 100%;
     height: auto;
-  }
+  }*/
 
   .login-reg .form-group {
       width: 90%;

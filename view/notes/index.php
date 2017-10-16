@@ -1,84 +1,47 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<?php
+//file: view/notes/index.php
+require_once(__DIR__."/../../core/ViewManager.php");
+$view = ViewManager::getInstance();
+$notes = $view->getVariable("notes");
+$sharedNotes = $view->getVariable("sharedNotes");
+$currentuser = $view->getVariable("currentusername");
+$view->setVariable("title", "Apunta");
+?>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Permanent Marker' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Patrick Hand' rel='stylesheet'>
-    <link rel="stylesheet" href="../../css/style.css"></link>
-    <meta charset="utf-8"></meta>
-    <title>Apunta</title>
-  </head>
   <body class="body-index">
     <div class="col-md-12">
-      <a class="glyphicon glyphicon-plus" id="nueva-nota" href="nueva_nota.html" title="Nueva nota"></a>
+      <a class="glyphicon glyphicon-plus" id="nueva-nota" href="index.php?controller=notes&amp;action=add" title="<?=i18n("New note");?>"></a>
     </div>
 
     <div class="col-md-5 col-sm-10 borde-div-notas">
-      <h3>Mis notas</h3>
-      <div class="col-md-5 col-sm-10 formatonota">
-        <div class="titulo-nota scrollbar">
-          <p >Lista de la compra </p>
-        </div>
-        <div class="ver-nota">
-            <a href="#vernota" class="glyphicon glyphicon-eye-open" title="Ver nota"></a>
-        </div>
-      </div>
+      <h3><?=i18n("My notes");?></h3>
 
-      <div class="col-md-5 col-sm-10 formatonota">
-        <p class="titulo-nota scrollbar">Películas recomendadas que molan muchiiiiiiiiiiiiisimo y son super super chachis</p>
-        <div class="ver-nota">
-          <a href="#vernota" class="glyphicon glyphicon-eye-open" title="Ver nota"></a>
+      <?php foreach ($notes as $note): ?>
+        <div class="col-md-5 col-sm-10 formatonota">
+          <div class="titulo-nota scrollbar">
+            <p ><?= $note->getTitle()?></p>
+          </div>
+          <div class="ver-nota">
+              <a href="index.php?controller=notes&amp;action=showNote&amp;id_note=<?=$note->getIdNote()?>" class="glyphicon glyphicon-eye-open" title="<?=i18n("Show note");?>"></a>
+          </div>
         </div>
-      </div>
-
-      <div class="col-md-5 col-sm-10 formatonota">
-        <p class="titulo-nota scrollbar">Películas recomendadas que molan muchiiiiiiiiiiiiisimo y son super super chachis</p>
-        <div class="ver-nota">
-          <a href="#vernota" class="glyphicon glyphicon-eye-open" title="Ver nota"></a>
-        </div>
-      </div>
-
-      <div class="col-md-5 col-sm-10 formatonota">
-        <p class="titulo-nota scrollbar">Películas recomendadas que molan muchiiiiiiiiiiiiisimo y son super super chachis</p>
-        <div class="ver-nota">
-          <a href="#vernota" class="glyphicon glyphicon-eye-open" title="Ver nota"></a>
-        </div>
-      </div>
-
-      <div class="col-md-5 col-sm-10 formatonota">
-        <p class="titulo-nota scrollbar">Películas recomendadas que molan muchiiiiiiiiiiiiisimo y son super super chachis</p>
-        <div class="ver-nota">
-          <a href="#vernota" class="glyphicon glyphicon-eye-open" title="Ver nota"></a>
-        </div>
-      </div>
-
-      <div class="col-md-5 col-sm-10 formatonota">
-        <p class="titulo-nota scrollbar">Películas recomendadas que molan muchiiiiiiiiiiiiisimo y son super super chachis</p>
-        <div class="ver-nota">
-          <a href="#vernota" class="glyphicon glyphicon-eye-open" title="Ver nota"></a>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
+
 
     <div class="col-md-5 col-sm-10 borde-div-notas">
-      <h3>Notas compartidas conmigo</h3>
+      <h3><?=i18n("Notes shared with me");?></h3>
+      <?php if($sharedNotes != NULL){
+        foreach ($sharedNotes as $note): ?>
       <div class="col-md-5 col-sm-10 formatonota">
-        <p class="titulo-nota scrollbar">Lugares de interés que hay que visitar si o si </p>
+        <p class="titulo-nota scrollbar"><?= $note->getTitle()?> </p>
         <div class="ver-nota">
-          <a href="#vernota" class="glyphicon glyphicon-eye-open" title="Ver nota"></a>
+          <a href="index.php?controller=notes&amp;action=showNote&amp;id_note=<?=$note->getIdNote()?>" class="glyphicon glyphicon-eye-open" title="<?=i18n("Show note");?>"></a>
         </div>
       </div>
-
-      <div class="col-md-5 col-sm-10 formatonota">
-        <p class="titulo-nota scrollbar">Lugares de interés que hay que visitar si o si </p>
-        <div class="ver-nota">
-          <a href="#vernota" class="glyphicon glyphicon-eye-open" title="Ver nota"></a>
-        </div>
-      </div>
+      <?php endforeach;
+    }?>
     </div>
-
 
 
   </body>

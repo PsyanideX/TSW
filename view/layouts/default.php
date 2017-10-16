@@ -6,45 +6,35 @@ $currentuser = $view->getVariable("currentusername");
 <html>
 <head>
 	<title><?= $view->getVariable("title", "no title") ?></title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<meta charset="utf-8"></meta>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Permanent Marker' rel='stylesheet'>
+	<link href='https://fonts.googleapis.com/css?family=Patrick Hand' rel='stylesheet'>
+	<link rel="stylesheet" href="css/style.css"></link>
 	<!-- enable ji18n() javascript function to translate inside your scripts -->
-	<script src="index.php?controller=language&amp;action=i18njs">
-	</script>
+	<script src="index.php?controller=language&amp;action=i18njs"></script>
 	<?= $view->getFragment("css") ?>
 	<?= $view->getFragment("javascript") ?>
 </head>
+
 <body>
-	<!-- header -->
+
 	<header>
-		<h1>Blog</h1>
-		<nav id="menu" style="background-color:grey">
-			<ul>
-				<li><a href="index.php?controller=posts&amp;action=index">Posts</a></li>
-
-				<?php if (isset($currentuser)): ?>
-					<li><?= sprintf(i18n("Hello %s"), $currentuser) ?>
-						<a 	href="index.php?controller=users&amp;action=logout">(Logout)</a>
-					</li>
-
-				<?php else: ?>
-					<li><a href="index.php?controller=users&amp;action=login"><?= i18n("Login") ?></a></li>
-				<?php endif ?>
-			</ul>
-		</nav>
+	  <nav class="navbar navbar-inverse" id="navfontcolor">
+	    <div class="container-fluid">
+	      <div class="navbar-header">
+	        <a class="navbar-brand" href="index.php?controller=notes&amp;action=index">APUNTA</a>
+	      </div>
+	      <ul class="nav navbar-nav navbar-right">
+					<?php if (isset($currentuser)): ?>
+	        <li><p class="navbar-text"><span class="glyphicon glyphicon-user"></span> <?= $currentuser; ?> </p></li>
+					<?php endif ?>
+	        <li><a href="index.php?controller=users&amp;action=logout"><span class="glyphicon glyphicon-log-in"></span> <?= i18n("Log out") ?></a></li>
+	      </ul>
+	    </div>
+	  </nav>
 	</header>
-
-  <nav class="navbar navbar-inverse" id="navfontcolor">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="index.html">APUNTA</a>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li><p class="navbar-text"><span class="glyphicon glyphicon-user"></span> Usuario</p></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Cerrar sesión</a></li>
-      </ul>
-    </div>
-  </nav>
 
 	<main>
 		<div id="flash">

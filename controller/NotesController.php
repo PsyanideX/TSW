@@ -16,9 +16,9 @@ class NotesController extends BaseController {
 
 	public function index() {
 		// obtain the data from the database
-		$notes = $this->noteMapper->findAll();
-		// put the array containing Note object to the view
-		$this->view->setVariable("notes", $notes);
+		$this->showMyNotes();
+		$this->showSharedNotes();
+
 		// render the view (/view/posts/index.php)
 		$this->view->render("notes", "index");
 	}
@@ -78,42 +78,42 @@ class NotesController extends BaseController {
 	}
 
 	public function edit() {
-		if (!isset($_REQUEST["id"])) {
-			throw new Exception("A post id is mandatory");
+		if (!isset($_REQUEST["id_note"])) {
+			throw new Exception("A note id is mandatory");
 		}
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Editing posts requires login");
+			throw new Exception("Not in session. Editing notes requires login");
 		}
 		// Get the Post object from the database
-		$postid = $_REQUEST["id"];
-		$post = $this->postMapper->findById($postid);
+		$id_note = $_REQUEST["id_note"];
+		$note = $this->postMapper->findById($id_note);
 		// Does the post exist?
-		if ($post == NULL) {
-			throw new Exception("no such post with id: ".$postid);
+		if ($note == NULL) {
+			throw new Exception("no such post with id: ".$id_note);
 		}
 		// Check if the Post author is the currentUser (in Session)
-		if ($post->getAuthor() != $this->currentUser) {
-			throw new Exception("logged user is not the author of the post id ".$postid);
+		if ($note->getUser() != $this->currentUser) {
+			throw new Exception("logged user is not the author of the note id ".$id_note);
 		}
 		if (isset($_POST["submit"])) { // reaching via HTTP Post...
 			// populate the Post object with data form the form
-			$post->setTitle($_POST["title"]);
-			$post->setContent($_POST["content"]);
+			$note->setTitle($_POST["title"]);
+			$note->setContent($_POST["content"]);
 			try {
 				// validate Post object
-				$post->checkIsValidForUpdate(); // if it fails, ValidationException
+				$note->checkIsValidForUpdate(); // if it fails, ValidationException
 				// update the Post object in the database
-				$this->postMapper->update($post);
+				$this->noteMapper->update($note);
 				// POST-REDIRECT-GET
 				// Everything OK, we will redirect the user to the list of posts
 				// We want to see a message after redirection, so we establish
 				// a "flash" message (which is simply a Session variable) to be
 				// get in the view after redirection.
-				$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully updated."),$post ->getTitle()));
+				$this->view->setFlash(sprintf(i18n("note \"%s\" successfully updated."),$note ->getTitle()));
 				// perform the redirection. More or less:
 				// header("Location: index.php?controller=posts&action=index")
 				// die();
-				$this->view->redirect("posts", "index");
+				$this->view->redirect("notes", "index");
 			}catch(ValidationException $ex) {
 				// Get the errors array inside the exepction...
 				$errors = $ex->getErrors();
@@ -122,13 +122,13 @@ class NotesController extends BaseController {
 			}
 		}
 		// Put the Post object visible to the view
-		$this->view->setVariable("post", $post);
-		// render the view (/view/posts/add.php)
-		$this->view->render("posts", "edit");
+		$this->view->setVariable("note", $note);
+		// render the view (/view/notes/edit_note.php)
+		$this->view->render("notes", "edit_note");
 	}
 
 	public function delete() {
-		if (!isset($_POST["id"])) {
+		if (!isset($_POST["id_note"])) {
 			throw new Exception("id is mandatory");
 		}
 		if (!isset($this->currentUser)) {
@@ -136,28 +136,42 @@ class NotesController extends BaseController {
 		}
 
 		// Get the Post object from the database
-		$postid = $_REQUEST["id"];
-		$post = $this->postMapper->findById($postid);
+		$id_note = $_REQUEST["id_note"];
+		$note = $this->noteMapper->findById($id_note);
 		// Does the post exist?
-		if ($post == NULL) {
-			throw new Exception("no such post with id: ".$postid);
+		if ($note == NULL) {
+			throw new Exception("no such note with id: ".$id_note);
 		}
 		// Check if the Post author is the currentUser (in Session)
-		if ($post->getAuthor() != $this->currentUser) {
-			throw new Exception("Post author is not the logged user");
+		if ($note->getUser() != $this->currentUser) {
+			throw new Exception("note author is not the logged user");
 		}
 		// Delete the Post object from the database
-		$this->postMapper->delete($post);
+		$this->postMapper->delete($note);
 		// POST-REDIRECT-GET
 		// Everything OK, we will redirect the user to the list of posts
 		// We want to see a message after redirection, so we establish
 		// a "flash" message (which is simply a Session variable) to be
 		// get in the view after redirection.
-		$this->view->setFlash(sprintf(i18n("Post \"%s\" successfully deleted."),$post ->getTitle()));
+		$this->view->setFlash(sprintf(i18n("note \"%s\" successfully deleted."),$note ->getTitle()));
 		// perform the redirection. More or less:
 		// header("Location: index.php?controller=posts&action=index")
 		// die();
-		$this->view->redirect("posts", "index");
+		$this->view->redirect("notes", "index");
+	}
+
+	public function showSharedNotes(){
+		$sharedNotes = $this->noteMapper->findAllShared($this->currentUser->getAlias());
+		// put the array containing Note object to the view
+		$this->view->setVariable("sharedNotes", $sharedNotes);
+		// render the view (/view/notes/index.php)
+
+	}
+
+	public function showMyNotes(){
+		$notes = $this->noteMapper->findAll($this->currentUser->getAlias());
+		// put the array containing Note object to the view
+		$this->view->setVariable("notes", $notes);
 	}
 }
 ?>
