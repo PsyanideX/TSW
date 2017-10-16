@@ -25,7 +25,7 @@ class NoteMapper {
 
 
 	public function findById($id_note){
-		$stmt = $this->db->prepare("SELECT * FROM notes WHERE id=?");
+		$stmt = $this->db->prepare("SELECT * FROM notes WHERE id_note=?");
 		$stmt->execute(array($id_note));
 		$note = $stmt->fetch(PDO::FETCH_ASSOC);
 		if($note != null) {
