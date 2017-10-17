@@ -14,11 +14,11 @@ $errors = $view->getVariable("errors");
         <h1 class="colorCabecera"><?=i18n("New Note")?></h1>
         <form  action="index.php?controller=notes&amp;action=add" method="post">
         <div>
-          <textarea id="areatitulo" name="title" rows="1" cols="80" value="<?= $note->getTitle() ?>" placeholder="<?=i18n("Title")?>"></textarea>
+          <input id="areatitulo" name="title" rows="1" cols="80" value="<?= $note->getTitle() ?>" placeholder="<?=i18n("Title")?>">
           <?= isset($errors["title"])?i18n($errors["title"]):"" ?><br>
         </div>
         <div>
-          <textarea id="areatexto" name="content" value="<?= $note->getContent() ?>" placeholder="<?=i18n("Content")?>"></textarea>
+          <textarea id="areatexto" name="content"  placeholder="<?=i18n("Content")?>"><?= htmlentities($note->getContent()) ?></textarea>
           <?= isset($errors["content"])?i18n($errors["content"]):"" ?><br>
         </div>
         <div>

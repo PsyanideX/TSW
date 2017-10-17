@@ -73,44 +73,32 @@ class NotesController extends BaseController {
 		if (!isset($this->currentUser)) {
 			throw new Exception("Not in session. Editing notes requires login");
 		}
-		// Get the Post object from the database
+
 		$id_note = $_REQUEST["id_note"];
-		$note = $this->postMapper->findById($id_note);
-		// Does the post exist?
+		$note = $this->noteMapper->findById($id_note);
 		if ($note == NULL) {
 			throw new Exception("no such post with id: ".$id_note);
 		}
-		// Check if the Post author is the currentUser (in Session)
+
 		if ($note->getUser() != $this->currentUser) {
 			throw new Exception("logged user is not the author of the note id ".$id_note);
 		}
-		if (isset($_POST["submit"])) { // reaching via HTTP Post...
-			// populate the Post object with data form the form
+		if (isset($_POST["submit"])) {
 			$note->setTitle($_POST["title"]);
 			$note->setContent($_POST["content"]);
 			try {
-				// validate Post object
+
 				$note->checkIsValidForUpdate(); // if it fails, ValidationException
-				// update the Post object in the database
 				$this->noteMapper->update($note);
-				// POST-REDIRECT-GET
-				// Everything OK, we will redirect the user to the list of posts
-				// We want to see a message after redirection, so we establish
-				// a "flash" message (which is simply a Session variable) to be
-				// get in the view after redirection.
 				$this->view->setFlash(sprintf(i18n("note \"%s\" successfully updated."),$note ->getTitle()));
-				// perform the redirection. More or less:
 				// header("Location: index.php?controller=posts&action=index")
-				// die();
 				$this->view->redirect("notes", "index");
 			}catch(ValidationException $ex) {
-				// Get the errors array inside the exepction...
 				$errors = $ex->getErrors();
-				// And put it to the view as "errors" variable
 				$this->view->setVariable("errors", $errors);
 			}
 		}
-		// Put the Post object visible to the view
+
 		$this->view->setVariable("note", $note);
 		// render the view (/view/notes/edit_note.php)
 		$this->view->render("notes", "edit_note");
@@ -126,6 +114,7 @@ class NotesController extends BaseController {
 
 		// Get the Post object from the database
 		$id_note = $_REQUEST["id_note"];
+		printf("Antes de mapper");
 		$note = $this->noteMapper->findById($id_note);
 		// Does the post exist?
 		if ($note == NULL) {
@@ -136,16 +125,9 @@ class NotesController extends BaseController {
 			throw new Exception("note author is not the logged user");
 		}
 		// Delete the Post object from the database
-		$this->postMapper->delete($note);
-		// POST-REDIRECT-GET
-		// Everything OK, we will redirect the user to the list of posts
-		// We want to see a message after redirection, so we establish
-		// a "flash" message (which is simply a Session variable) to be
-		// get in the view after redirection.
+		$this->noteMapper->delete($note);
+		printf("Despues de mapper");
 		$this->view->setFlash(sprintf(i18n("note \"%s\" successfully deleted."),$note ->getTitle()));
-		// perform the redirection. More or less:
-		// header("Location: index.php?controller=posts&action=index")
-		// die();
 		$this->view->redirect("notes", "index");
 	}
 
