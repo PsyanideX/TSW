@@ -8,7 +8,6 @@ $view->setVariable("title", "New Note");
 $errors = $view->getVariable("errors");
 ?>
 
-  <body class="body-index">
     <div>
       <div class="col-xs-12" id="crear-nota">
         <h1 class="colorCabecera"><?=i18n("New Note")?></h1>
@@ -29,6 +28,3 @@ $errors = $view->getVariable("errors");
         </div>
       </div>
     </div>
-
-  </body>
-  </html>

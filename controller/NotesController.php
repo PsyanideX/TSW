@@ -3,17 +3,20 @@
 require_once(__DIR__."/../model/Note.php");
 require_once(__DIR__."/../model/NoteMapper.php");
 require_once(__DIR__."/../model/User.php");
+require_once(__DIR__."/../model/UserMapper.php");
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../controller/BaseController.php");
 
 class NotesController extends BaseController {
 
 	private $noteMapper;
+	private $userMapper;
 	public function __construct() {
 		parent::__construct();
 		$this->noteMapper = new NoteMapper();
+		$this->userMapper = new UserMapper();
 	}
-
+//******************************************************************************
 	public function index() {
 		// obtain the data from the database
 		$this->showMyNotes();
@@ -21,7 +24,7 @@ class NotesController extends BaseController {
 		// render the view (/view/notes/index.php)
 		$this->view->render("notes", "index");
 	}
-
+//******************************************************************************
 	public function showNote(){
 		if (!isset($_GET["id_note"])) {
 			throw new Exception(i18n("id is mandatory"));
@@ -36,7 +39,7 @@ class NotesController extends BaseController {
 		// render the view (/view/notes/show_note.php)
 		$this->view->render("notes", "show_note");
 	}
-
+//******************************************************************************
 	public function add() {
 		if (!isset($this->currentUser)) {
 			throw new Exception(i18n("Not in session. Adding posts requires login"));
@@ -44,7 +47,6 @@ class NotesController extends BaseController {
 		$note = new Note();
 
 		if (isset($_POST["submit"])) {
-
 			$note->setTitle($_POST["title"]);
 			$note->setContent($_POST["content"]);
 			$note->setUser($this->currentUser);
@@ -65,7 +67,7 @@ class NotesController extends BaseController {
 		// render the view (/view/notes/new_note.php)
 		$this->view->render("notes", "new_note");
 	}
-
+//******************************************************************************
 	public function edit() {
 		if (!isset($_REQUEST["id_note"])) {
 			throw new Exception("A note id is mandatory");
@@ -103,7 +105,7 @@ class NotesController extends BaseController {
 		// render the view (/view/notes/edit_note.php)
 		$this->view->render("notes", "edit_note");
 	}
-
+//******************************************************************************
 	public function delete() {
 		if (!isset($_POST["id_note"])) {
 			throw new Exception("id is mandatory");
@@ -112,37 +114,56 @@ class NotesController extends BaseController {
 			throw new Exception("Not in session. Editing posts requires login");
 		}
 
-		// Get the Post object from the database
 		$id_note = $_REQUEST["id_note"];
-		printf("Antes de mapper");
 		$note = $this->noteMapper->findById($id_note);
-		// Does the post exist?
+
 		if ($note == NULL) {
 			throw new Exception("no such note with id: ".$id_note);
 		}
-		// Check if the Post author is the currentUser (in Session)
 		if ($note->getUser() != $this->currentUser) {
 			throw new Exception("note author is not the logged user");
 		}
-		// Delete the Post object from the database
+
 		$this->noteMapper->delete($note);
-		printf("Despues de mapper");
 		$this->view->setFlash(sprintf(i18n("note \"%s\" successfully deleted."),$note ->getTitle()));
 		$this->view->redirect("notes", "index");
 	}
-
+//******************************************************************************
 	public function showSharedNotes(){
 		$sharedNotes = $this->noteMapper->findAllShared($this->currentUser->getAlias());
 		// put the array containing Note object to the view
 		$this->view->setVariable("sharedNotes", $sharedNotes);
-		// render the view (/view/notes/index.php)
-
 	}
-
+//******************************************************************************
 	public function showMyNotes(){
 		$notes = $this->noteMapper->findAll($this->currentUser->getAlias());
 		// put the array containing Note object to the view
 		$this->view->setVariable("notes", $notes);
+	}
+//******************************************************************************
+	public function share(){
+		if(!isset($_GET["sharedUser"] )){
+			throw new Exception("User is mandatory");
+		}
+		if(!isset($_POST["id_note"] )){
+			throw new Exception("id is mandatory");
+		}
+		$id_note = $_POST["id_note"];
+		$user_alias = $_GET["sharedUser"];
+
+		if(!$this->userMapper->aliasExists($user_alias)){
+			throw new Exception("User doesn't exist");
+		}
+
+		if(!$this->noteMapper->findById($id_note)){
+			throw new Exception("No such note with id: ".$id_note);
+		}
+		$note = $this->noteMapper->findById($id_note);
+
+		$this->noteMapper->sharedNotes($id_note,$user_alias);
+		$this->view->setFlash(sprintf(i18n("note \"%s\" successfully shared with \"%s\"."),$note ->getTitle(), $user_alias));
+		$this->view->render("notes", "index");
+
 	}
 }
 ?>

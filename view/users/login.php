@@ -1,4 +1,3 @@
-
 <?php
 //file: view/users/login.php
 require_once(__DIR__."/../../core/ViewManager.php");
@@ -6,20 +5,6 @@ $view = ViewManager::getInstance();
 $view->setVariable("title", "Login");
 $errors = $view->getVariable("errors");
 ?>
-
-
-<html>
-  <head>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Permanent Marker' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Patrick Hand' rel='stylesheet'>
-    <link rel="stylesheet" href="../../css/style.css"></link>
-    <meta charset="utf-8"></meta>
-  </head>
- <body class="body-login-reg">
-
     <div class="login-reg">
       <div class="container">
         <div class="col-xs-12">
@@ -47,5 +32,3 @@ $errors = $view->getVariable("errors");
           </div> <!-- /.col-xs-12 -->
         </div> <!-- /.container -->
     </div>
-  </body>
-</html>

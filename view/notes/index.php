@@ -8,7 +8,6 @@ $currentuser = $view->getVariable("currentusername");
 $view->setVariable("title", "Apunta");
 ?>
 
-  <body class="body-index">
     <div class="col-md-12">
       <a class="glyphicon glyphicon-plus" id="nueva-nota" href="index.php?controller=notes&amp;action=add" title="<?=i18n("New note");?>"></a>
     </div>
@@ -42,8 +41,3 @@ $view->setVariable("title", "Apunta");
       <?php endforeach;
     }?>
     </div>
-
-
-  </body>
-
-</html>
