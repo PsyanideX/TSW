@@ -142,14 +142,15 @@ class NotesController extends BaseController {
 	}
 //******************************************************************************
 	public function share(){
-		if(!isset($_GET["sharedUser"] )){
+		printf("estoy en share");
+		if(!isset($_POST["sharedUser"] )){
 			throw new Exception("User is mandatory");
 		}
 		if(!isset($_POST["id_note"] )){
 			throw new Exception("id is mandatory");
 		}
 		$id_note = $_POST["id_note"];
-		$user_alias = $_GET["sharedUser"];
+		$user_alias = $_POST["sharedUser"];
 
 		if(!$this->userMapper->aliasExists($user_alias)){
 			throw new Exception("User doesn't exist");
@@ -160,9 +161,9 @@ class NotesController extends BaseController {
 		}
 		$note = $this->noteMapper->findById($id_note);
 
-		$this->noteMapper->sharedNotes($id_note,$user_alias);
+		$this->noteMapper->shareNote($id_note,$user_alias);
 		$this->view->setFlash(sprintf(i18n("note \"%s\" successfully shared with \"%s\"."),$note ->getTitle(), $user_alias));
-		$this->view->render("notes", "index");
+		$this->view->redirect("notes", "index");
 
 	}
 }

@@ -27,6 +27,9 @@ $currentuser = $view->getVariable("currentusername");
 	      <div class="navbar-header">
 	        <a class="navbar-brand" href="index.php?controller=notes&amp;action=index">APUNTA</a>
 	      </div>
+
+				<span> <?php include(__DIR__."/language_select_element.php");?> </span>
+
 	      <ul class="nav navbar-nav navbar-right">
 					<?php if (isset($currentuser)): ?>
 	        <li><p class="navbar-text"><span class="glyphicon glyphicon-user"></span> <?= $currentuser; ?> </p></li>
@@ -45,11 +48,5 @@ $currentuser = $view->getVariable("currentusername");
 		<?= $view->getFragment(ViewManager::DEFAULT_FRAGMENT) ?>
 	</main>
 
-	<footer>
-		<?php
-		include(__DIR__."/language_select_element.php");
-		?>
-	</footer>
-
-</body>
+	</body>
 </html>
