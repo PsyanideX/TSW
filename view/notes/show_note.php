@@ -7,7 +7,6 @@ $currentuser = $view->getVariable("currentusername");
 $view->setVariable("title", "Show note");
 ?>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <div>
       <div class="col-xs-12 center-block" id="contenedornotaext">
         <h1 class="colorCabecera"><?=$note->getTitle()?></h1>
@@ -26,28 +25,31 @@ $view->setVariable("title", "Show note");
         				class="glyphicon glyphicon-trash" title="<?=i18n("Delete note")?>"></a>
         			</form>
 
-              <form id="share_note_<?= $note->getIdNote(); ?>" style="display: inline">
-        				<a href="#" onclick="shareFunction()"	class="glyphicon glyphicon-share-alt" title="<?=i18n("Share note")?>"></a>
-        			</form>
+              <?php
+                if (isset($currentuser) && $currentuser == $note->getUser()->getAlias()): ?>
 
-              <form id="popup" method="POST" action="index.php?controller=notes&amp;action=share">
-                <input type="hidden" name="id_note" value="<?= $note->getIdNote() ?>">
-                <input type="text" name="sharedUser" placeholder="<?=i18n("Username")?>">
-                <input type="submit" name="submit" placeholder="<?=i18n("Share note")?>">
-              </form>
+                <form id="share_note_<?= $note->getIdNote(); ?>" style="display: inline">
+          				<a href="#" onclick="shareFunction()"	class="glyphicon glyphicon-share-alt" title="<?=i18n("Share note")?>"></a>
+          			</form>
 
-              <script>
-                $(document).ready(function(){
-                  $("#share_note_<?= $note->getIdNote(); ?>").click(function(){
-                    if($("#popup").css("display") == "none"){
-                      $("#popup").slideToggle();
-                    } else {
-                      $("#popup").slideToggle();
-                    }
+                <form id="popup" method="POST" action="index.php?controller=notes&amp;action=share">
+                  <input type="hidden" name="id_note" value="<?= $note->getIdNote() ?>">
+                  <input type="text" name="sharedUser" placeholder="<?=i18n("Username")?>">
+                  <input type="submit" name="submit" placeholder="<?=i18n("Share note")?>">
+                </form>
+
+                <script>
+                  $(document).ready(function(){
+                    $("#share_note_<?= $note->getIdNote(); ?>").click(function(){
+                      if($("#popup").css("display") == "none"){
+                        $("#popup").slideToggle();
+                      } else {
+                        $("#popup").slideToggle();
+                      }
+                    });
                   });
-                });
-              </script>
-
+                </script>
+              <?php endif; ?>
             </div>
         </div>
       </div>

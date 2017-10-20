@@ -83,8 +83,11 @@ class NotesController extends BaseController {
 		}
 
 		if ($note->getUser() != $this->currentUser) {
-			throw new Exception("logged user is not the author of the note id ".$id_note);
+			if(!$this->noteMapper->shareExists($id_note,$this->currentUser->getAlias())){
+				 throw new Exception("logged user is not the author of the note id ".$id_note);
+			}
 		}
+		
 		if (isset($_POST["submit"])) {
 			$note->setTitle($_POST["title"]);
 			$note->setContent($_POST["content"]);
@@ -121,10 +124,11 @@ class NotesController extends BaseController {
 			throw new Exception("no such note with id: ".$id_note);
 		}
 		if ($note->getUser() != $this->currentUser) {
-			throw new Exception("note author is not the logged user");
+			$this->noteMapper->unshareNote($id_note, $this->currentUser->getAlias());
+			//throw new Exception("note author is not the logged user");
+		} else {
+			$this->noteMapper->delete($note);
 		}
-
-		$this->noteMapper->delete($note);
 		$this->view->setFlash(sprintf(i18n("note \"%s\" successfully deleted."),$note ->getTitle()));
 		$this->view->redirect("notes", "index");
 	}
@@ -142,7 +146,6 @@ class NotesController extends BaseController {
 	}
 //******************************************************************************
 	public function share(){
-		printf("estoy en share");
 		if(!isset($_POST["sharedUser"] )){
 			throw new Exception("User is mandatory");
 		}
@@ -151,6 +154,10 @@ class NotesController extends BaseController {
 		}
 		$id_note = $_POST["id_note"];
 		$user_alias = $_POST["sharedUser"];
+
+		if($user_alias == $this->currentUser->getAlias()){
+			throw new Exception("You cannot share a note with yourself");
+		}
 
 		if(!$this->userMapper->aliasExists($user_alias)){
 			throw new Exception("User doesn't exist");

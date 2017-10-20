@@ -73,5 +73,13 @@ class NoteMapper {
 			return $notes;
 		}
 //******************************************************************************
+		public function shareExists($id_note,$alias) {
+			$stmt = $this->db->prepare("SELECT count(alias) FROM shared_notes where id_note=? AND alias=?");
+			$stmt->execute(array($id_note, $alias));
+			if ($stmt->fetchColumn() > 0) {
+				return true;
+			}
+		}
+//******************************************************************************
 	}
 ?>
