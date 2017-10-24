@@ -78,8 +78,20 @@ class NoteMapper {
 			$stmt->execute(array($id_note, $alias));
 			if ($stmt->fetchColumn() > 0) {
 				return true;
+			}else{
+				return false;
 			}
 		}
 //******************************************************************************
+		public function sharedWith($id_note){
+			$stmt = $this->db->prepare("SELECT * FROM shared_notes WHERE id_note =?");
+			$stmt->execute(array($id_note));
+			$users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$users = array();
+			foreach ($users_db as $user) {
+				array_push($users, $user);
+			}
+			return $users;
+		}
 	}
 ?>

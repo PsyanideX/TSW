@@ -4,6 +4,8 @@ require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $note = $view->getVariable("note");
 $currentuser = $view->getVariable("currentusername");
+$sharedusers = $view->getVariable("sharedUsers");
+
 $view->setVariable("title", "Show note");
 ?>
 
@@ -25,12 +27,15 @@ $view->setVariable("title", "Show note");
         				class="glyphicon glyphicon-trash" title="<?=i18n("Delete note")?>"></a>
         			</form>
 
-
               <?php
                 if (isset($currentuser) && $currentuser == $note->getUser()->getAlias()): ?>
 
-                <form id="share_note_<?= $note->getIdNote(); ?>" style="display: inline">
-          				<a href="#" onclick="shareFunction()"	class="glyphicon glyphicon-share-alt" title="<?=i18n("Share note")?>"></a>
+                <form class="share_note" id="share_note_<?= $note->getIdNote(); ?>" style="display: inline">
+          				<a href="#" class="glyphicon glyphicon-share-alt" title="<?=i18n("Share note")?>"></a>
+          			</form>
+
+                <form class="info_note" id="info_note_<?= $note->getIdNote(); ?>" style="display: inline">
+          				<a href="#" class="glyphicon glyphicon-info-sign" title="<?=i18n("Shared with")?>"></a>
           			</form>
 
                 <form id="popup" method="POST" action="index.php?controller=notes&amp;action=share">
@@ -39,23 +44,26 @@ $view->setVariable("title", "Show note");
                   <input type="submit" name="submit" placeholder="<?=i18n("Share note")?>">
                 </form>
 
-                <script>
-                  $(document).ready(function(){
-                    $("#share_note_<?= $note->getIdNote(); ?>").click(function(){
-                      if($("#popup").css("display") == "none"){
-                        $("#popup").slideToggle();
-                      } else {
-                        $("#popup").slideToggle();
-                      }
-                    });
-                  });
-                </script>
+                <div id="sharedwith">
+                  <table>
+                    <tr>
+                      <th><?=i18n("Shared with")?></th>
+                    </tr>
+                    <tr>
+                      <?php foreach ($sharedusers as $user): ?>
+                      <td><?=$user["alias"];?></td>
+                      <td><a href="index.php?controller=notes&amp;action=unshareNote&amp;id_note=<?=$note->getIdNote()?>&amp;userShared=<?=$user["alias"]?>" class="	glyphicon glyphicon-remove" title="<?=i18n("Unshare note")?>"></a></td>
+                    </tr>
+
+                  <?php endforeach; ?>
+                </table>
+                </div>
+
               <?php elseif (isset($currentuser) && $currentuser != $note->getUser()->getAlias()): ?>
                 <div class="ver-autor">
                   <p><?=i18n("Author: ")?><?= $note->getUser()->getAlias()?></p>
                 </div>
               <?php endif; ?>
-
 
             </div>
         </div>

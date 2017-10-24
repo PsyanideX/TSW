@@ -36,8 +36,12 @@ class NotesController extends BaseController {
 		}
 		// put the Note object to the view
 		$this->view->setVariable("note", $note);
+		$sharedUsers = $this->noteMapper->sharedWith($id_note);
+		$this->view->setVariable("sharedUsers", $sharedUsers);
 		// render the view (/view/notes/show_note.php)
 		$this->view->render("notes", "show_note");
+
+
 	}
 //******************************************************************************
 	public function add() {
@@ -87,7 +91,7 @@ class NotesController extends BaseController {
 				 throw new Exception("logged user is not the author of the note id ".$id_note);
 			}
 		}
-		
+
 		if (isset($_POST["submit"])) {
 			$note->setTitle($_POST["title"]);
 			$note->setContent($_POST["content"]);
@@ -163,14 +167,45 @@ class NotesController extends BaseController {
 			throw new Exception("User doesn't exist");
 		}
 
+		if($this->noteMapper->shareExists($id_note,$user_alias)){
+			throw new Exception("Note already shared with that user");
+		}
+
 		if(!$this->noteMapper->findById($id_note)){
 			throw new Exception("No such note with id: ".$id_note);
 		}
 		$note = $this->noteMapper->findById($id_note);
 
 		$this->noteMapper->shareNote($id_note,$user_alias);
+
+		$this->view->setVariable("note", $note);
+		$sharedUsers = $this->noteMapper->sharedWith($id_note);
+		$this->view->setVariable("sharedUsers", $sharedUsers);
+
 		$this->view->setFlash(sprintf(i18n("note \"%s\" successfully shared with \"%s\"."),$note ->getTitle(), $user_alias));
-		$this->view->redirect("notes", "index");
+		$this->view->render("notes", "show_note");
+
+	}
+	//*****************************************************************************
+	public function unshareNote(){
+		if (!isset($_GET["id_note"])) {
+			throw new Exception(i18n("id is mandatory"));
+		}
+		if (!isset($_GET["userShared"])) {
+			throw new Exception(i18n("user is mandatory"));
+		}
+		$id_note = $_GET["id_note"];
+		$userShared= $_GET["userShared"];
+		$note = $this->noteMapper->findById($id_note);
+
+		$this->noteMapper->unshareNote($id_note,$userShared);
+
+		$this->view->setVariable("note", $note);
+		$sharedUsers = $this->noteMapper->sharedWith($id_note);
+		$this->view->setVariable("sharedUsers", $sharedUsers);
+
+		$this->view->setFlash(sprintf(i18n("note \"%s\" successfully unshared with \"%s\"."),$note ->getTitle(), $userShared));
+		$this->view->render("notes", "show_note");
 
 	}
 }

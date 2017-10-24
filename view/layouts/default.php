@@ -14,6 +14,7 @@ $currentuser = $view->getVariable("currentusername");
 	<link rel="stylesheet" href="css/style.css"></link>
 	<!-- enable ji18n() javascript function to translate inside your scripts -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/general_js.js"></script>
 	<script src="index.php?controller=language&amp;action=i18njs"></script>
 	<?= $view->getFragment("css") ?>
 	<?= $view->getFragment("javascript") ?>

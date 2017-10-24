@@ -238,6 +238,12 @@ html, body{
   font-style: italic;
 }
 
+#sharedwith{
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+}
+
 footer{
   position: absolute;
   bottom: 0;
