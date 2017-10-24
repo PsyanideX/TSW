@@ -38,7 +38,8 @@ array(
 	"Notes shared with me" =>"Notas compartidas conmigo",
 	"Edit"=>"Editar",
 	"Introduce the user you want to share the note with" => "Introduce el usuario con quien deseas compartir la nota",
-	"You didn't share the note" => "No has compartido la npta"
+	"You didn't share the note" => "No has compartido la nota",
+	"Author: "=> "Autor: "
 
 
 )

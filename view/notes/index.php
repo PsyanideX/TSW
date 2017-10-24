@@ -37,6 +37,9 @@ $view->setVariable("title", "Apunta");
         <div class="ver-nota">
           <a href="index.php?controller=notes&amp;action=showNote&amp;id_note=<?=$note->getIdNote()?>" class="glyphicon glyphicon-eye-open" title="<?=i18n("Show note");?>"></a>
         </div>
+        <div class="ver-autor">
+          <p><?=i18n("Author: ")?><?= $note->getUser()->getAlias()?></p>
+        </div>
       </div>
       <?php endforeach;
     }?>

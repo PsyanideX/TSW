@@ -25,6 +25,7 @@ $view->setVariable("title", "Show note");
         				class="glyphicon glyphicon-trash" title="<?=i18n("Delete note")?>"></a>
         			</form>
 
+
               <?php
                 if (isset($currentuser) && $currentuser == $note->getUser()->getAlias()): ?>
 
@@ -49,7 +50,13 @@ $view->setVariable("title", "Show note");
                     });
                   });
                 </script>
+              <?php elseif (isset($currentuser) && $currentuser != $note->getUser()->getAlias()): ?>
+                <div class="ver-autor">
+                  <p><?=i18n("Author: ")?><?= $note->getUser()->getAlias()?></p>
+                </div>
               <?php endif; ?>
+
+
             </div>
         </div>
       </div>
