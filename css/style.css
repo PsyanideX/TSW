@@ -278,7 +278,7 @@ footer{
 }
 
 @media screen and (max-width:767px) {
-  #languagechooser{
+  #spanlang{
     position: absolute;
     top:0;
     right:0;

@@ -17,14 +17,17 @@ $view->setVariable("title", "Register");
 
               <div class="form-group">
                 <input type="text" name="name"  class="form-control" placeholder="<?=i18n("Name and surname")?>">
+                <?= isset($errors["name"])?i18n($errors["name"]):"" ?><br>
               </div>
 
               <div class="form-group">
                 <input type="text" name="alias"  class="form-control" placeholder="<?=i18n("Username")?>">
+                <?= isset($errors["alias"])?i18n($errors["alias"]):"" ?><br>
               </div>
 
               <div class="form-group">
                 <input type="password" name="passwd" class="form-control" placeholder="<?=i18n("Password")?>">
+                <?= isset($errors["passwd"])?i18n($errors["passwd"]):"" ?><br>
               </div>
 
               <div class="form-group">

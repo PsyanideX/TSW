@@ -40,6 +40,10 @@ array(
 	"Author: "=> "Autor: ",
 	"Shared with:" => "Compartido con:",
 	"Unshare note" => "Dejar de compartir nota",
+	"Alias must be at least 5 characters length" => "El nombre de usuario debe contener al menos 5 caracteres",
+	"Password must be at least 5 characters length" => "La contraseña debe contener al menos 5 caracteres",
+	"Name must be at least 3 characters length" => "El nombre debe contener al menos 3 caracteres",
+	" successfully added. Please login now" => " Registrado con éxito. Inicia sesión!"
 
 )
 ?>

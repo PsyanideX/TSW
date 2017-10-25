@@ -53,7 +53,7 @@ class User {
 		}
 
     if (strlen($this->name) < 3) {
-			$errors["name"] = i18n("Password must be at least 3 characters length");
+			$errors["name"] = i18n("Name must be at least 3 characters length");
 		}
 
 		if (sizeof($errors)>0){
