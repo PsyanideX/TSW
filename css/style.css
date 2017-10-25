@@ -265,7 +265,20 @@ footer{
   #contenedornotaint{
     width: 60%;
   }
+
+  .formatonota{
+    display: block;
+  }
 }
+
+@media screen and (max-width:767px) {
+  #languagechooser{
+    position: absolute;
+    top:0;
+    right:0;
+  }
+}
+
 
 @media screen and (max-width:685px) {
   .login-reg h1 {
@@ -274,6 +287,10 @@ footer{
   }
   .login-reg .form-group {
       width: 40%;
+  }
+
+  .formatonota{
+    display: block;
   }
 
   #contenedornotaint{
@@ -297,6 +314,9 @@ footer{
     width: 60%;
   }
 
+  .formatonota{
+    display: block;
+  }
 }
 
 @media screen and (max-width:400px) {
