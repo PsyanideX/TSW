@@ -189,10 +189,10 @@ class NotesController extends BaseController {
 	//*****************************************************************************
 	public function unshareNote(){
 		if (!isset($_GET["id_note"])) {
-			throw new Exception(i18n("id is mandatory"));
+			throw new Exception("id is mandatory");
 		}
 		if (!isset($_GET["userShared"])) {
-			throw new Exception(i18n("user is mandatory"));
+			throw new Exception("user is mandatory");
 		}
 		$id_note = $_GET["id_note"];
 		$userShared= $_GET["userShared"];

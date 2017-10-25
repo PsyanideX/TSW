@@ -41,13 +41,13 @@ $view->setVariable("title", "Show note");
                 <form id="popup" method="POST" action="index.php?controller=notes&amp;action=share">
                   <input type="hidden" name="id_note" value="<?= $note->getIdNote() ?>">
                   <input type="text" name="sharedUser" placeholder="<?=i18n("Username")?>">
-                  <input type="submit" name="submit" placeholder="<?=i18n("Share note")?>">
+                  <input type="submit" name="submit" value="<?=i18n("Share note")?>">
                 </form>
 
                 <div id="sharedwith">
                   <table>
                     <tr>
-                      <th><?=i18n("Shared with")?></th>
+                      <th><?=i18n("Shared with:")?></th>
                     </tr>
                     <tr>
                       <?php foreach ($sharedusers as $user): ?>

@@ -6,17 +6,16 @@ array(
 	"by %s" => "por %s",
 	"Notes" => "Notas",
 	"Title" => "Título",
-	"Contents" => "Contenido",
+	"Content" => "Contenido",
 	"New note" =>"Nueva nota",
 	"Create" => "Crear",
 	"Hello %s" => "Hola %s",
-	"Edit note" => "Modificar nota",
+	"Edit note" => "Editar nota",
 	"Note \"%s\" successfully added." => "Nota \"%s\" añadida.",
 	"Note \"%s\" successfully updated." => "Nota \"%s\" modificada.",
 	"Note \"%s\" successfully deleted." => "Nota \"%s\" eliminada.",
 	"Username" => "Nombre de usuario",
 	"Password" => "Contraseña",
-	"Not user?" => "Nuevo aquí?",
 	"Sign up here!" => "¡Regístrate aquí!",
 	"Sign up" => "Registro",
 	"Delete note" => "Eliminar nota",
@@ -37,10 +36,10 @@ array(
 	"My notes" => "Mis notas",
 	"Notes shared with me" =>"Notas compartidas conmigo",
 	"Edit"=>"Editar",
-	"Introduce the user you want to share the note with" => "Introduce el usuario con quien deseas compartir la nota",
 	"You didn't share the note" => "No has compartido la nota",
-	"Author: "=> "Autor: "
-
+	"Author: "=> "Autor: ",
+	"Shared with:" => "Compartido con:",
+	"Unshare note" => "Dejar de compartir nota",
 
 )
 ?>

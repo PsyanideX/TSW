@@ -54,22 +54,12 @@ class Note {
 		if (strlen(trim($this->content)) == 0 ) {
 			$errors["content"] = i18n("content is mandatory");
 		}
-		/*if ($this->alias == NULL ) {
-			$errors["alias"] = i18n("alias is mandatory");
-		}*/
+		
 		if (sizeof($errors) > 0){
 			throw new ValidationException($errors, i18n("Note is not valid"));
 		}
 	}
-	/**
-	* Checks if the current instance is valid
-	* for being updated in the database.
-	*
-	* @throws ValidationException if the instance is
-	* not valid
-	*
-	* @return void
-	*/
+
 	public function checkIsValidForUpdate() {
 		$errors = array();
 		if (!isset($this->id_note)) {

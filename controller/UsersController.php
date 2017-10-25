@@ -11,38 +11,9 @@ class UsersController extends BaseController {
 	public function __construct() {
 		parent::__construct();
 		$this->userMapper = new UserMapper();
-		// Users controller operates in a "welcome" layout
-		// different to the "default" layout where the internal
-		// menu is displayed
 		$this->view->setLayout("welcome");
 	}
-	/**
-	* Action to login
-	*
-	* Logins a user checking its creedentials agains
-	* the database
-	*
-	* When called via GET, it shows the login form
-	* When called via POST, it tries to login
-	*
-	* The expected HTTP parameters are:
-	* <ul>
-	* <li>login: The username (via HTTP POST)</li>
-	* <li>passwd: The password (via HTTP POST)</li>
-	* </ul>
-	*
-	* The views are:
-	* <ul>
-	* <li>posts/login: If this action is reached via HTTP GET (via include)</li>
-	* <li>posts/index: If login succeds (via redirect)</li>
-	* <li>users/login: If validation fails (via include). Includes these view variables:</li>
-	* <ul>
-	*	<li>errors: Array including validation errors</li>
-	* </ul>
-	* </ul>
-	*
-	* @return void
-	*/
+
 	public function login() {
 		if (isset($_POST["alias"]) && isset($_POST["passwd"]) ){ // reaching via HTTP Post...
 			//process login form
@@ -59,33 +30,7 @@ class UsersController extends BaseController {
 		// render the view (/view/users/login.php)
 		$this->view->render("users", "login");
 	}
-	/**
-	* Action to register
-	*
-	* When called via GET, it shows the register form.
-	* When called via POST, it tries to add the user
-	* to the database.
-	*
-	* The expected HTTP parameters are:
-	* <ul>
-	* <li>login: The username (via HTTP POST)</li>
-	* <li>passwd: The password (via HTTP POST)</li>
-	* </ul>
-	*
-	* The views are:
-	* <ul>
-	* <li>users/register: If this action is reached via HTTP GET (via include)</li>
-	* <li>users/login: If login succeds (via redirect)</li>
-	* <li>users/register: If validation fails (via include). Includes these view variables:</li>
-	* <ul>
-	*	<li>user: The current User instance, empty or being added
-	*	(but not validated)</li>
-	*	<li>errors: Array including validation errors</li>
-	* </ul>
-	* </ul>
-	*
-	* @return void
-	*/
+
 	public function register() {
 		$user = new User();
 		if (isset($_POST["alias"]) && isset($_POST["name"]) && isset($_POST["passwd"])){ // reaching via HTTP Post...
@@ -103,11 +48,6 @@ class UsersController extends BaseController {
 
 					$this->userMapper->save($user);
 
-					// POST-REDIRECT-GET
-					// Everything OK, we will redirect the user to the list of posts
-					// We want to see a message after redirection, so we establish
-					// a "flash" message (which is simply a Session variable) to be
-					// get in the view after redirection.
 					$this->view->setFlash(i18n("Alias")." ".$user->getAlias().i18n(" successfully added. Please login now"));
 					// perform the redirection. More or less:
 					// header("Location: index.php?controller=users&action=login")
@@ -130,20 +70,7 @@ class UsersController extends BaseController {
 		// render the view (/view/users/register.php)
 		$this->view->render("users", "register");
 	}
-	/**
-	* Action to logout
-	*
-	* This action should be called via GET
-	*
-	* No HTTP parameters are needed.
-	*
-	* The views are:
-	* <ul>
-	* <li>users/login (via redirect)</li>
-	* </ul>
-	*
-	* @return void
-	*/
+	
 	public function logout() {
 		session_destroy();
 		// perform a redirection. More or less:
