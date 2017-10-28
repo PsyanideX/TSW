@@ -46,6 +46,10 @@ $currentuser = $view->getVariable("currentusername");
 			<?= $view->popFlash() ?>
 		</div>
 
+		<div id="flasherror">
+			<?= $view->popFlashError() ?>
+		</div>
+
 		<?= $view->getFragment(ViewManager::DEFAULT_FRAGMENT) ?>
 	</main>
 

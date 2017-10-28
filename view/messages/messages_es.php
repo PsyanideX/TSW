@@ -41,11 +41,15 @@ array(
 	"You didn't share the note" => "No has compartido la nota",
 	"Author: "=> "Autor: ",
 	"Shared with:" => "Compartido con:",
+	"Shared with" => "Compartido con",
 	"Unshare note" => "Dejar de compartir nota",
 	"Alias must be at least 5 characters length" => "El nombre de usuario debe contener al menos 5 caracteres",
 	"Password must be at least 5 characters length" => "La contraseña debe contener al menos 5 caracteres",
 	"Name must be at least 3 characters length" => "El nombre debe contener al menos 3 caracteres",
-	" successfully added. Please login now" => " Registrado con éxito. Inicia sesión!"
-
+	" successfully added. Please login now" => " Registrado con éxito. Inicia sesión!",
+	"You cannot share a note with yourself" => "No puedes compartir una nota contigo mismo",
+	"User doesn't exist" => "El usuario no existe",
+	"Note already shared with that user" => "Nota ya compartida con ese usuario",
+	"No such note with id: " => "No hay una nota con ese id"
 )
 ?>

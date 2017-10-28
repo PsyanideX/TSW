@@ -255,6 +255,11 @@ footer{
   color: #337ab7;
 }
 
+#flasherror{
+  text-align: center;
+  color: red;
+}
+
 /***********************************@media*************************************/
 
 

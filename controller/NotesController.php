@@ -160,19 +160,27 @@ class NotesController extends BaseController {
 		$user_alias = $_POST["sharedUser"];
 
 		if($user_alias == $this->currentUser->getAlias()){
-			throw new Exception("You cannot share a note with yourself");
+			$this->view->setFlashError(sprintf(i18n("You cannot share a note with yourself")));
+			$this->view->redirect("notes", "index");
+			die();
 		}
 
 		if(!$this->userMapper->aliasExists($user_alias)){
-			throw new Exception("User doesn't exist");
+			$this->view->setFlashError(sprintf(i18n("User doesn't exist")));
+			$this->view->redirect("notes", "index");
+			die();
 		}
 
 		if($this->noteMapper->shareExists($id_note,$user_alias)){
-			throw new Exception("Note already shared with that user");
+			$this->view->setFlashError(sprintf(i18n("Note already shared with that user")));
+			$this->view->redirect("notes", "index");
+			die();
 		}
 
 		if(!$this->noteMapper->findById($id_note)){
-			throw new Exception("No such note with id: ".$id_note);
+			$this->view->setFlashError(sprintf(i18n("No such note with id: ").$id_note));
+			$this->view->redirect("notes", "index");
+			die();
 		}
 		$note = $this->noteMapper->findById($id_note);
 

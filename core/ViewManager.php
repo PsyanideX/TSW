@@ -77,6 +77,19 @@ class ViewManager {
 		return $this->getVariable("__flashmessage__", "");
 	}
 
+/******************************************************************************/
+
+/*PARA MOSTRAR MENSAJES DE ERROR EN ROJO ANTES DE LANZAR EXCEPCIONES*/
+
+	public function setFlashError($flashMessage) {
+		$this->setVariable("__flashmessageerror__", $flashMessage, true);
+	}
+	public function popFlashError() {
+		return $this->getVariable("__flashmessageerror__", "");
+	}
+
+	/****************************************************************************/
+
 	public function setLayout($layout) {
 		$this->layout = $layout;
 	}
@@ -101,7 +114,7 @@ class ViewManager {
 		include(__DIR__."/../view/layouts/".$this->layout.".php");
 		ob_flush();
 	}
-	
+
 	private static $viewmanager_singleton = NULL;
 	public static function getInstance() {
 		if (self::$viewmanager_singleton == null) {
