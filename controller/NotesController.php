@@ -99,7 +99,7 @@ class NotesController extends BaseController {
 
 				$note->checkIsValidForUpdate(); // if it fails, ValidationException
 				$this->noteMapper->update($note);
-				$this->view->setFlash(sprintf(i18n("note \"%s\" successfully updated."),$note ->getTitle()));
+				$this->view->setFlash(sprintf(i18n("Note \"%s\" successfully updated."),$note ->getTitle()));
 				// header("Location: index.php?controller=posts&action=index")
 				$this->view->redirect("notes", "index");
 			}catch(ValidationException $ex) {
@@ -133,7 +133,7 @@ class NotesController extends BaseController {
 		} else {
 			$this->noteMapper->delete($note);
 		}
-		$this->view->setFlash(sprintf(i18n("note \"%s\" successfully deleted."),$note ->getTitle()));
+		$this->view->setFlash(sprintf(i18n("Note \"%s\" successfully deleted."),$note ->getTitle()));
 		$this->view->redirect("notes", "index");
 	}
 //******************************************************************************
@@ -182,7 +182,7 @@ class NotesController extends BaseController {
 		$sharedUsers = $this->noteMapper->sharedWith($id_note);
 		$this->view->setVariable("sharedUsers", $sharedUsers);
 
-		$this->view->setFlash(sprintf(i18n("note \"%s\" successfully shared with \"%s\"."),$note ->getTitle(), $user_alias));
+		$this->view->setFlash(sprintf(i18n("Note \"%s\" successfully shared with \"%s\"."),$note ->getTitle(), $user_alias));
 		$this->view->render("notes", "show_note");
 
 	}
@@ -204,7 +204,7 @@ class NotesController extends BaseController {
 		$sharedUsers = $this->noteMapper->sharedWith($id_note);
 		$this->view->setVariable("sharedUsers", $sharedUsers);
 
-		$this->view->setFlash(sprintf(i18n("note \"%s\" successfully unshared with \"%s\"."),$note ->getTitle(), $userShared));
+		$this->view->setFlash(sprintf(i18n("Note \"%s\" successfully unshared with \"%s\"."),$note ->getTitle(), $userShared));
 		$this->view->render("notes", "show_note");
 
 	}

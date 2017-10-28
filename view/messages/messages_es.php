@@ -14,6 +14,8 @@ array(
 	"Note \"%s\" successfully added." => "Nota \"%s\" añadida.",
 	"Note \"%s\" successfully updated." => "Nota \"%s\" modificada.",
 	"Note \"%s\" successfully deleted." => "Nota \"%s\" eliminada.",
+	"Note \"%s\" successfully unshared with \"%s\"." => "Has dejado de compartir la nota \"%s\" con \"%s\".",
+	"Note \"%s\" successfully shared with \"%s\"." => "Has compartido la nota \"%s\" con \"%s\".",
 	"Username" => "Nombre de usuario",
 	"Password" => "Contraseña",
 	"Sign up here!" => "¡Regístrate aquí!",
