@@ -1,5 +1,5 @@
 <?php
-// file: model/Post.php
+// file: model/Note.php
 require_once(__DIR__."/../core/ValidationException.php");
 
 class Note {
@@ -43,7 +43,7 @@ class Note {
 	public function setUser(User $alias) {
 		$this->alias = $alias;
 	}
-  /*ATRIBUTO ARRAY  USUARIOS QUE COMPARTEN LA NOTA*/
+
 
   //----------------Validations----------------------------------
 	public function checkIsValidForCreate() {
@@ -54,7 +54,7 @@ class Note {
 		if (strlen(trim($this->content)) == 0 ) {
 			$errors["content"] = i18n("content is mandatory");
 		}
-		
+
 		if (sizeof($errors) > 0){
 			throw new ValidationException($errors, i18n("Note is not valid"));
 		}

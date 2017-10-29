@@ -1,5 +1,5 @@
 <?php
-//file: view/notes/index.php
+//file: view/notes/show_note.php
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $note = $view->getVariable("note");

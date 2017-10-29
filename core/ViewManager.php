@@ -79,7 +79,7 @@ class ViewManager {
 
 /******************************************************************************/
 
-/*PARA MOSTRAR MENSAJES DE ERROR EN ROJO ANTES DE LANZAR EXCEPCIONES*/
+/*PARA MOSTRAR MENSAJES DE ERROR EN ROJO ANTES DE REDIRECCCIONAR*/
 
 	public function setFlashError($flashMessage) {
 		$this->setVariable("__flashmessageerror__", $flashMessage, true);

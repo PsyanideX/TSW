@@ -1,5 +1,5 @@
 <?php
-//file: controller/PostController.php
+//file: controller/NoteController.php
 require_once(__DIR__."/../model/Note.php");
 require_once(__DIR__."/../model/NoteMapper.php");
 require_once(__DIR__."/../model/User.php");
@@ -100,7 +100,7 @@ class NotesController extends BaseController {
 				$note->checkIsValidForUpdate(); // if it fails, ValidationException
 				$this->noteMapper->update($note);
 				$this->view->setFlash(sprintf(i18n("Note \"%s\" successfully updated."),$note ->getTitle()));
-				// header("Location: index.php?controller=posts&action=index")
+				// header("Location: index.php?controller=notes&action=index")
 				$this->view->redirect("notes", "index");
 			}catch(ValidationException $ex) {
 				$errors = $ex->getErrors();
@@ -118,7 +118,7 @@ class NotesController extends BaseController {
 			throw new Exception("id is mandatory");
 		}
 		if (!isset($this->currentUser)) {
-			throw new Exception("Not in session. Editing posts requires login");
+			throw new Exception("Not in session. Editing notes requires login");
 		}
 
 		$id_note = $_REQUEST["id_note"];
@@ -129,7 +129,7 @@ class NotesController extends BaseController {
 		}
 		if ($note->getUser() != $this->currentUser) {
 			$this->noteMapper->unshareNote($id_note, $this->currentUser->getAlias());
-			//throw new Exception("note author is not the logged user");
+
 		} else {
 			$this->noteMapper->delete($note);
 		}
@@ -139,7 +139,7 @@ class NotesController extends BaseController {
 //******************************************************************************
 	public function showSharedNotes(){
 		$sharedNotes = $this->noteMapper->findAllShared($this->currentUser->getAlias());
-		// put the array containing Note object to the view
+		// put the array containing Shared Notes to the view
 		$this->view->setVariable("sharedNotes", $sharedNotes);
 	}
 //******************************************************************************
@@ -162,25 +162,21 @@ class NotesController extends BaseController {
 		if($user_alias == $this->currentUser->getAlias()){
 			$this->view->setFlashError(sprintf(i18n("You cannot share a note with yourself")));
 			$this->view->redirect("notes", "index");
-			die();
 		}
 
 		if(!$this->userMapper->aliasExists($user_alias)){
 			$this->view->setFlashError(sprintf(i18n("User doesn't exist")));
 			$this->view->redirect("notes", "index");
-			die();
 		}
 
 		if($this->noteMapper->shareExists($id_note,$user_alias)){
 			$this->view->setFlashError(sprintf(i18n("Note already shared with that user")));
 			$this->view->redirect("notes", "index");
-			die();
 		}
 
 		if(!$this->noteMapper->findById($id_note)){
 			$this->view->setFlashError(sprintf(i18n("No such note with id: ").$id_note));
 			$this->view->redirect("notes", "index");
-			die();
 		}
 		$note = $this->noteMapper->findById($id_note);
 

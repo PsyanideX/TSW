@@ -48,10 +48,7 @@ class UsersController extends BaseController {
 
 					$this->userMapper->save($user);
 
-					$this->view->setFlash(i18n("Alias")." ".$user->getAlias().i18n(" successfully added. Please login now"));
-					// perform the redirection. More or less:
-					// header("Location: index.php?controller=users&action=login")
-					// die();
+					$this->view->setFlash(i18n("Alias")." ".$user->getAlias().i18n(" successfully added. Please login now"));					
 					$this->view->redirect("users", "login");
 				} else {
 					$errors = array();
@@ -70,12 +67,9 @@ class UsersController extends BaseController {
 		// render the view (/view/users/register.php)
 		$this->view->render("users", "register");
 	}
-	
+
 	public function logout() {
 		session_destroy();
-		// perform a redirection. More or less:
-		// header("Location: index.php?controller=users&action=login")
-		// die();
 		$this->view->redirect("users", "login");
 	}
 }
