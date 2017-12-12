@@ -26,6 +26,9 @@ class NotesController extends BaseController {
 	}
 //******************************************************************************
 	public function showNote(){
+		if (!isset($this->currentUser)) {
+			throw new Exception(i18n("Not in session. Viewing notes requires login"));
+		}
 		if (!isset($_GET["id_note"])) {
 			throw new Exception(i18n("id is mandatory"));
 		}
@@ -34,6 +37,10 @@ class NotesController extends BaseController {
 		if ($note == NULL) {
 			throw new Exception(i18n("no such note with id: ").$id_note);
 		}
+		if($note->getUser()->getAlias()!=$this->currentUser->getAlias()){
+			throw new Exception(i18n("you are not the author of this note"));
+		}
+
 		// put the Note object to the view
 		$this->view->setVariable("note", $note);
 		$sharedUsers = $this->noteMapper->sharedWith($id_note);
@@ -156,8 +163,18 @@ class NotesController extends BaseController {
 		if(!isset($_POST["id_note"] )){
 			throw new Exception("id is mandatory");
 		}
+
 		$id_note = $_POST["id_note"];
+		$note = $this->noteMapper->findById($id_note);
 		$user_alias = $_POST["sharedUser"];
+
+		if ($note == NULL) {
+			throw new Exception(i18n("no such note with id: ").$id_note);
+		}
+		
+		if($note->getUser()->getAlias()!=$this->currentUser->getAlias()){
+			throw new Exception(i18n("you are not the author of this note"));
+		}
 
 		if($user_alias == $this->currentUser->getAlias()){
 			$this->view->setFlashError(sprintf(i18n("You cannot share a note with yourself")));
@@ -187,7 +204,7 @@ class NotesController extends BaseController {
 		$this->view->setVariable("sharedUsers", $sharedUsers);
 
 		$this->view->setFlash(sprintf(i18n("Note \"%s\" successfully shared with \"%s\"."),$note ->getTitle(), $user_alias));
-		$this->view->render("notes", "show_note");
+		$this->view->redirect("notes", "index");
 
 	}
 	//*****************************************************************************
@@ -209,7 +226,7 @@ class NotesController extends BaseController {
 		$this->view->setVariable("sharedUsers", $sharedUsers);
 
 		$this->view->setFlash(sprintf(i18n("Note \"%s\" successfully unshared with \"%s\"."),$note ->getTitle(), $userShared));
-		$this->view->render("notes", "show_note");
+		$this->view->redirect("notes", "index");
 
 	}
 }
